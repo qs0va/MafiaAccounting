@@ -3,11 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>qs0va</groupId>
   <artifactId>MafiaAccounting</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>MafiaAccounting Maven Webapp</name>
+  <properties>
+    <maven.compiler.source>19</maven.compiler.source>
+    <maven.compiler.target>19</maven.compiler.target>
+  </properties>
+    <name>MafiaAccounting Maven Webapp</name>
   <url>http://maven.apache.org</url>
-
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.0</version>
+  </parent>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -15,9 +23,23 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>3.0.5</version>
+    </dependency>
   </dependencies>
 
   <build>
     <finalName>MafiaAccounting</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+
   </build>
 </project>
