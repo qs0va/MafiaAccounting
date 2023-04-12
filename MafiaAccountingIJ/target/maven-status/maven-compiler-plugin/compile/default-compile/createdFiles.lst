@@ -1,5 +1,6 @@
-qs0va\controller\FtController.class
-qs0va\my\repos\PlayerRepository.class
+qs0va\Application.class
+qs0va\controllers\PlayersController.class
+qs0va\repositories\PlayerRepository.class
 qs0va\model\Game.class
-qs0va\main\Application.class
+qs0va\services\PlayersService.class
 qs0va\model\Player.class
