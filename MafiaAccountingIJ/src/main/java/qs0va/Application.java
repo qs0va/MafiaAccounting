@@ -1,4 +1,4 @@
-package qs0va.main;
+package qs0va;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

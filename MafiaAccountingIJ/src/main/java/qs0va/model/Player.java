@@ -1,7 +1,15 @@
 package qs0va.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Player {
-    long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    Long id;
     String email;
     String nickname;
 
@@ -9,6 +17,10 @@ public class Player {
         this.id = id;
         this.email = email;
         this.nickname = nickname;
+    }
+
+    public Player() {
+
     }
 
     public long getId() {
