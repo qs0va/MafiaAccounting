@@ -1,6 +1,8 @@
 qs0va\Application.class
 qs0va\controllers\PlayersController.class
+qs0va\model\PlayerGame.class
 qs0va\repositories\PlayerRepository.class
 qs0va\model\Game.class
+qs0va\model\PlayerGameId.class
 qs0va\services\PlayersService.class
 qs0va\model\Player.class

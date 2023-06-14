@@ -1,24 +1,25 @@
 package qs0va.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.*;
 
 @Entity
 public class Player {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String email;
+    @Column(name = "nickname", unique = true)
     String nickname;
 
-    public Player(long id, String email, String nickname) {
-        this.id = id;
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
+    Set<PlayerGame> playerGames;
+
+    public Player(String email, String nickname) {
         this.email = email;
         this.nickname = nickname;
     }
-
     public Player() {
 
     }
