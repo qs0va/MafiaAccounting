@@ -1,5 +1,6 @@
 package qs0va.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -14,7 +15,7 @@ public class Player {
     String nickname;
 
     @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
-    Set<PlayerGame> playerGames;
+    Set<PlayerGame> playersGames;
 
     public Player(String email, String nickname) {
         this.email = email;
@@ -46,5 +47,33 @@ public class Player {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    @JsonIgnore
+    public Set<PlayerGame> getPlayersGames() {
+        return playersGames;
+    }
+    public void setPlayersGames(Set<PlayerGame> playersGames) {
+        this.playersGames = playersGames;
+    }
+
+    @Override
+    public String toString() {
+        String out = "Player{ " +
+                "id=" + id +
+                ", email='" + email +
+                "', nickname='" + nickname +
+                "', games(";
+        try {
+            for (Iterator<PlayerGame> i = playersGames.iterator(); i.hasNext();) {
+                PlayerGame el = i.next();
+                out += el.getGameId() + " ";
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        out += ")}";
+        return out;
     }
 }

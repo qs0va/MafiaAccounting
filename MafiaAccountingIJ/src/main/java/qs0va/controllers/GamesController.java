@@ -2,36 +2,34 @@ package qs0va.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import qs0va.model.Game;
 import qs0va.model.Player;
-import qs0va.services.PlayersService;
+import qs0va.services.GamesService;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/players")
-public class PlayersController {
-
+@RequestMapping("/games")
+public class GamesController {
     @Autowired
-    PlayersService service;
+    GamesService service;
     @Autowired
     ObjectMapper objectMapper;
 
     @GetMapping()
-    ResponseEntity<List<Player>> getAll() throws JsonProcessingException {
+    ResponseEntity<List<Game>> getAll() throws JsonProcessingException {
         return ResponseEntity.ok(service.getAll());
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Player> getById(@PathVariable("id") int id) throws JsonProcessingException {
+    ResponseEntity<Game> getById(@PathVariable("id") int id) throws JsonProcessingException {
         try {
             return ResponseEntity.ok(service.getById(id));
         }
@@ -41,7 +39,7 @@ public class PlayersController {
     }
 
     @PutMapping()
-    void put(@RequestBody Player player) {
-        service.add(player);
+    void put(@RequestBody Game game) {
+        service.add(game);
     }
 }

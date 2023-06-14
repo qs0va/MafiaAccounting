@@ -1,10 +1,10 @@
 package qs0va.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Game {
@@ -22,11 +22,22 @@ public class Game {
         this.id = id;
     }
 
+    @JsonIgnore
     public Set<PlayerGame> getPlayersGames() {
         return playersGames;
     }
     public void setPlayersGames(Set<PlayerGame> playersGames) {
         this.playersGames = playersGames;
+    }
+
+    @JsonProperty
+    List<Player> listPlayers() {
+        List out = new ArrayList();
+        for (Iterator<PlayerGame> i = playersGames.iterator(); i.hasNext();) {
+            PlayerGame el = i.next();
+            out.add(el.getPlayer());
+        }
+        return out;
     }
 
     @Override
@@ -37,7 +48,7 @@ public class Game {
         try {
             for (Iterator<PlayerGame> i = playersGames.iterator(); i.hasNext();) {
                 PlayerGame el = i.next();
-                out += el.getPlayer().getId() + " ";
+                out += el.getPlayerId() + " ";
             }
         }
         catch (Exception e) {
